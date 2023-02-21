@@ -14,6 +14,9 @@ typedef double duration_t;
 void sleep_for_duration(duration_t duration);
 duration_t parse_duration_str(char *str);
 
+#define BETWEEN(x, a, b)    ((a) <= (x) && (x) <= (b))
+#define LEN(x) sizeof(x)/sizeof(x[0])
+
 struct suffix_mult {
 	char suffix[4];
 	uint32_t mult;
@@ -52,5 +55,26 @@ extern const struct suffix_mult cwbkMG_suffixes[];
 #define kMG_suffixes (cwbkMG_suffixes + 3)
 extern const struct suffix_mult kmg_i_suffixes[];
 #include "xatonum.h"
+
+typedef struct llist_t {
+	struct llist_t *link;
+	char *data;
+} llist_t;
+void llist_add_to(llist_t **old_head, void *data);
+void llist_add_to_end(llist_t **list_head, void *data);
+void *llist_pop(llist_t **elm);
+void llist_unlink(llist_t **head, llist_t *elm);
+void llist_free(llist_t *elm, void (*freeit)(void *data));
+llist_t *llist_rev(llist_t *list);
+llist_t *llist_find_str(llist_t *first, const char *str);
+
+typedef uint_least32_t Rune;
+size_t utf8encode(Rune, char *);
+char utf8encodebyte(Rune, size_t);
+size_t utf8validate(Rune *, size_t);
+Rune utf8decodebyte(char c, size_t *i);
+
+
+
 
 #endif /* LIBPHY_H */
