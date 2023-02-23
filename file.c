@@ -1,6 +1,6 @@
 #include "libphy.h"
 
-static char *private_get_line_from_file(FILE *file, int c)
+static char *file_get_line(FILE *file, int c)
 {
 #define GROWBY (120)
 

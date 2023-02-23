@@ -13,7 +13,7 @@ typedef struct {
 	vector_elem_destructor_t elem_destructor;
 } vector_metadata_t;
 
-#define vector_type(type) type *
+#define vector(type) type *
 
 #define vector_vec_to_base(vec) \
 	(&((vector_metadata_t *)(vec))[-1])
@@ -37,7 +37,7 @@ typedef struct {
 	do {							\
 		size_t cv_cap_ = vector_capacity(vec);		\
 		if (cv_cap_ < (capacity));			\
-			vector_grow((vec), (vector_capacity));	\
+			vector_grow((vec), (capacity));		\
 	} while (0)
 
 #define vector_erase(vec, i)											\
@@ -82,12 +82,6 @@ typedef struct {
 		}											\
 	} while (0)
 
-
-#define vector_begin(vec) \
-	(vec)
-
-#define vector_end(vec) \
-	((vec) ? &((vec)[vector_size(vec)]) : NULL)
 
 #define vector_compute_next_grow(size) \
 	((size) ? ((size) << 1) : 1)
