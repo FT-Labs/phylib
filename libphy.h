@@ -8,6 +8,9 @@
 #include <locale.h>
 #include <errno.h>
 #include <ctype.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include "vector.h"
 
 #include <time.h>
 typedef double duration_t;
@@ -73,8 +76,5 @@ size_t utf8encode(Rune, char *);
 char utf8encodebyte(Rune, size_t);
 size_t utf8validate(Rune *, size_t);
 Rune utf8decodebyte(char c, size_t *i);
-
-
-
 
 #endif /* LIBPHY_H */
