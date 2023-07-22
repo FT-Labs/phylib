@@ -30,7 +30,7 @@ stra_str_to_arr(const char *str, char delim)
 			stra = realloc(stra, sizeof(char *) * sz);
 		}
 	}
-	stra[idx] = NULL;
+	stra[++idx] = NULL;
 	return stra;
 }
 
